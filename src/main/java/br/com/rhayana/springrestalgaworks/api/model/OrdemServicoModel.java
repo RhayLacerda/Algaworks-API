@@ -1,44 +1,34 @@
-package br.com.rhayana.springrestalgaworks.domain.model;
+package br.com.rhayana.springrestalgaworks.api.model;
 
-import javax.persistence.*;
+import br.com.rhayana.springrestalgaworks.domain.model.StatusOrdemServico;
+
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
-import java.util.Objects;
 
-@Entity
-public class OrdemServico {
+public class OrdemServicoModel {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @ManyToOne
-    private Cliente cliente;
-
+    private ClienteResumoModel cliente;
     private String descricao;
     private BigDecimal preco;
-
-    @Enumerated(EnumType.STRING)
     private StatusOrdemServico status;
-
     private OffsetDateTime dataAbertura;
-
     private OffsetDateTime dataFinalizacao;
 
     public Long getId() {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Cliente getCliente() {
+    public ClienteResumoModel getCliente() {
         return cliente;
     }
 
-    public void setCliente(Cliente cliente) {
+    public void setCliente(ClienteResumoModel cliente) {
         this.cliente = cliente;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getDescricao() {
@@ -79,18 +69,5 @@ public class OrdemServico {
 
     public void setDataFinalizacao(OffsetDateTime dataFinalizacao) {
         this.dataFinalizacao = dataFinalizacao;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        OrdemServico that = (OrdemServico) o;
-        return Objects.equals(id, that.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
     }
 }
